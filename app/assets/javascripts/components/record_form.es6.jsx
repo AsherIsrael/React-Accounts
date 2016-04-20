@@ -34,7 +34,7 @@ class RecordForm extends React.Component {
 			type: "POST",
 			url: '/records',
 			data: {
-				//authenticity_token: $('meta[name=csrf-token]').attr('content'),
+				authenticity_token: $('meta[name=csrf-token]').attr('content'),
 				title: this.state.title,
 				date: this.state.date,
 				amount: parseFloat(this.state.amount)
@@ -69,7 +69,7 @@ class RecordForm extends React.Component {
 	}
 }
 RecordForm.propTypes = {
-	title: React.PropTypes.array,
+	title: React.PropTypes.string,
 	date: React.PropTypes.string,
 	amount: React.PropTypes.number,
 	handleNewRecord: React.PropTypes.func.isRequired

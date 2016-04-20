@@ -1,4 +1,4 @@
-var ReactCSSTransitionGroup = require('react-addons-css-transition-group');
+var ReactCSSTransitionGroup = React.addons.CSSTransitionGroup;
 class Records extends React.Component {
 	constructor(props){
 		super(props);
@@ -45,15 +45,15 @@ class Records extends React.Component {
 	}
 	updateRecord(record, data){
 		var index = this.state.records.indexOf(record);
-		var records = this.state.records;
+		var records = this.state.records.slice();
 		data['amount'] = parseFloat(data['amount']);
 		records.splice(index, 1, data);
 		this.setState(this.state.records = records);
 	}
 	render(){
-		let rows = this.state.records.map(record => {
+		var rows = this.state.records.map(record => {
 			return <Record record={record} key={record.id} handleDeleteRecord={this.deleteRecord} handleEditRecord={this.updateRecord}/>
-		})
+		}.bind(this));
 		return (
 			<div className="records">
 				<h2 className="title">Records</h2>
@@ -73,11 +73,9 @@ class Records extends React.Component {
 							<th>Actions</th>
 						</tr>
 					</thead>
-					<tbody>
-						<ReactCSSTransitionGroup transitionName="example" transitionEnterTimeout={500} transitionLeaveTimeout={300}>
-							{rows}
-						</ReactCSSTransitionGroup>
-					</tbody>
+					<ReactCSSTransitionGroup component="tbody" transitionName="record" transitionEnterTimeout={500} transitionLeaveTimeout={300}>
+						{rows}
+					</ReactCSSTransitionGroup>
 				</table>
 			</div>
 		);
