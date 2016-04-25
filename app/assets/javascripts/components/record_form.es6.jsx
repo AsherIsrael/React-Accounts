@@ -10,20 +10,17 @@ class RecordForm extends React.Component {
 			id: null
 		};
 	}
-	componentDidMount(){
-	      this.setState({token: $('meta[name=csrf-token]').attr('content')});
-	}
 	handleChange(e){
-		name = e.target.name;
+		var name = e.target.name;
 		this.setState({[name]: e.target.value});
 		
 	}
 	valid(){
-		valid = Boolean(this.state.date && this.state.title && this.state.amount);
-		return valid
+		var valid = Boolean(this.state.date && this.state.title && this.state.amount);
+		return valid;
 	}
 	handleSubmit(e){
-		e.preventDefault()
+		e.preventDefault();
 
 		
 		var thisForm = this;
@@ -53,7 +50,7 @@ class RecordForm extends React.Component {
 	}
 	render(){
 		return(
-			<form id="form" className="form-inline" onSubmit={this.handleSubmit.bind(this)}>
+			<form className="form-inline" onSubmit={this.handleSubmit.bind(this)}>
 				<div className="form-group">
 					<input type="date" className="form-control" placeholder="Date" name="date" value={this.state.date} onChange={this.handleChange.bind(this)}/>
 				</div>

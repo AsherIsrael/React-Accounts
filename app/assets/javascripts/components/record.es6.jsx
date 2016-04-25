@@ -14,7 +14,7 @@ class Record extends React.Component {
 	}
 	handleToggle(e){
 		e.preventDefault();
-		this.setState({edit: !this.state.edit})
+		this.setState({edit: !this.state.edit});
 	}
 	handleDelete(e){
 		e.preventDefault();
@@ -52,22 +52,33 @@ class Record extends React.Component {
 		)
 	}
 	recordRow(){
+		var type = '';
+		var glyph = '';
+		if(this.props.record.amount > 0){
+			type = 'col-md-2 text-center amountCell';
+			glyph = 'glyphicon glyphicon-triangle-top green';
+		}else{
+			type = 'col-md-2 text-center amountCell';
+			glyph = 'glyphicon glyphicon-triangle-bottom red';
+		};
+		var d = new Date(this.props.record.date);
+		var date = d.toDateString();
 		return (
 			<tr>
-				<td>{this.props.record.date}</td>
-				<td>{this.props.record.title}</td>
-				<td>{amountFormat(this.props.record.amount)}</td>
-				<td><a className="btn btn-default" onClick={this.handleToggle}>Edit</a> <a className="btn btn-danger" onClick={this.handleDelete}>Delete</a></td>
+				<td className="col-md-3">{date}</td>
+				<td className="col-md-2 text-justify">{this.props.record.title}</td>
+				<td className={type}><span className={glyph}></span>{amountFormat(this.props.record.amount)}</td>
+				<td className="col-md-3 text-center"><span className="col-md-3"></span><a className="col-md-2 btn btn-default" onClick={this.handleToggle}>Edit</a><span className="col-md-1"></span><a className="col-md-3 btn btn-danger" onClick={this.handleDelete}>Delete</a></td>
 			</tr>
 		);
 	}
 	recordForm(){
 		return(
 			<tr>
-				<td><input type="date" className="form-control" placeholder="Date" ref="date" defaultValue={this.props.record.date}/></td>
-				<td><input type="text" className="form-control" placeholder="Title" ref="title" defaultValue={this.props.record.title}/></td>
-				<td><input type="number" step="0.01" className="form-control" placeholder="Amount" ref="amount" defaultValue={this.props.record.amount}/></td>
-				<td><a className="btn btn-default"  onClick={this.handleEdit}>Update</a> <a className="btn btn-danger" onClick={this.handleToggle}>Cancel</a></td>
+				<td className="col-md-3"><input type="date" className="form-control" placeholder="Date" ref="date" defaultValue={this.props.record.date}/></td>
+				<td className="col-md-2"><input type="text" className="form-control" placeholder="Title" ref="title" defaultValue={this.props.record.title}/></td>
+				<td className="col-md-2"><input type="number" step="0.01" className="form-control" placeholder="Amount" ref="amount" defaultValue={this.props.record.amount}/></td>
+				<td className="col-md-3 text-center"><span className="col-md-3"></span><a className="col-md-3 btn btn-default" onClick={this.handleEdit}>Update</a><span className="col-md-1"></span><a className="col-md-3 btn btn-danger" onClick={this.handleToggle}>Cancel</a></td>
 			</tr>
 		);
 	}

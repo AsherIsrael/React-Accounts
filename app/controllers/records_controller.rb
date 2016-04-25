@@ -1,13 +1,13 @@
 class RecordsController < ApplicationController
+	before_action :require_login
 	def index
-		@records = Record.all
+		@records = Record.where(user:current_user)
 	end
 	def create
-		puts "creating"
-		puts params.inspect
 		@record = Record.new(record_params)
 
 		if @record.save
+			@record.update(user: current_user)
 			render json: @record
 		else
 			render json: @record.errors, status: :unprocessable_entity
@@ -15,13 +15,13 @@ class RecordsController < ApplicationController
 	end
 	def destroy
 		@record = Record.find(params[:id])
-		@record.destroy
+		@record.destroy if @record.user == current_user
 		head :no_content
 	end
 	def update
-		puts params
 		@record = Record.find(params[:id])
-		if @record.update(record_params)
+		success = @record.update(record_params) if @record.user == current_user
+		if success
 			render json: @record
 		else
 			render json: @record.errors, status: :unprocessable_entity

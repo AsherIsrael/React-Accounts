@@ -28,14 +28,14 @@ class Records extends React.Component {
 		return parseFloat(total.toFixed(2));
 	}
 	balance(){
-		var total  = this.debits() + this.credits()
+		var total  = this.debits() + this.credits();
 		return total.toFixed(2);
 	}
 	addRecord(record){
 		record.amount = parseFloat(record.amount);
-		var records = this.state.records.slice()
-		records.push(record)
-		this.setState(this.state.records = records)
+		var records = this.state.records.slice();
+		records.push(record);
+		this.setState(this.state.records = records);
 	}
 	deleteRecord(record){
 		var records = this.state.records;
@@ -55,28 +55,66 @@ class Records extends React.Component {
 			return <Record record={record} key={record.id} handleDeleteRecord={this.deleteRecord} handleEditRecord={this.updateRecord}/>
 		}.bind(this));
 		return (
-			<div className="records">
-				<h2 className="title">Records</h2>
+			<div className="container-fluid">
+				<br/>
 				<div className="row">
-					<AmountBox type={'success'} amount={this.credits()} text={'Credit'}/>
-					<AmountBox type={'danger'} amount={this.debits()} text={'Debit'}/>
-					<AmountBox type={'info'} amount={this.balance()} text={'Balance'}/>
+					<div className="col-md-1"></div>
+					<div className="col-md-10">
+						<div className="row">
+							<div className="col-md-11"></div>
+							<div className="col-md-1">
+								<Logout/>
+							</div>
+						</div>
+						<div className="row">
+							<div className="col-md-1"></div>
+							<h1 className="title col-md-2">Records</h1>
+							<div className="col-md-9"></div>
+						</div>
+						<div className="row">
+							<div className="col-md-3"></div>
+							<AmountBox type={'success'} amount={this.credits()} text={'Credit'}/>
+							<AmountBox type={'danger'} amount={this.debits()} text={'Debit'}/>
+							<AmountBox type={'info'} amount={this.balance()} text={'Balance'}/>
+							<div className="col-md-3"></div>
+						</div>
+						<br/>
+						<div className="row">
+							<div className="col-md-3"></div>
+							<div className="col-md-6">
+								<RecordForm handleNewRecord={this.addRecord} key={1}/>
+							</div>
+							<div className="col-md-3"></div>
+						</div>
+						<div className="row">
+							<div className="col-md-1"></div>
+							<div className="col-md-10">
+								<hr/>
+							</div>
+							<div className="col-md-1"></div>
+						</div>
+						<div className="row">
+							<div className="col-md-1"></div>
+							<div className="col-md-10 table-responsive">
+								<table className="table table-bordered shadowed">
+									<thead>
+										<tr>
+											<th className="col-md-3">Date</th>
+											<th className="col-md-2">Title</th>
+											<th className="col-md-2">Amount</th>
+											<th className="col-md-3">Actions</th>
+										</tr>
+									</thead>
+									<ReactCSSTransitionGroup component="tbody" transitionName="record" transitionEnterTimeout={500} transitionLeaveTimeout={300}>
+										{rows}
+									</ReactCSSTransitionGroup>
+								</table>
+							</div>
+							<div className="col-md-1"></div>
+						</div>
+					</div>
+					<div className="col-md-1"></div>
 				</div>
-				<RecordForm handleNewRecord={this.addRecord} key={1}/>
-				<hr/>
-				<table className="table table-bordered">
-					<thead>
-						<tr>
-							<th>Date</th>
-							<th>Title</th>
-							<th>Amount</th>
-							<th>Actions</th>
-						</tr>
-					</thead>
-					<ReactCSSTransitionGroup component="tbody" transitionName="record" transitionEnterTimeout={500} transitionLeaveTimeout={300}>
-						{rows}
-					</ReactCSSTransitionGroup>
-				</table>
 			</div>
 		);
 	}

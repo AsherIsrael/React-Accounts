@@ -18,3 +18,45 @@
   opacity: 0.01;
   transition: opacity 300ms ease-in;
 }
+
+.amountCell{
+	border-radius: 15px;
+}
+
+.table{
+	table-layout: fixed;
+	word-wrap: break-word;
+	background-color: white;
+	margin-left: 0;
+	margin-right: 0;
+}
+
+.shadowed{
+	box-shadow: -2px 1px 5px 0 rgba(0, 0, 0, .5);
+}
+
+.container-fluid{
+	background-color: #f1f3f3;
+	height: 100%;
+	
+}
+
+html, body{
+	height: 100%;
+}
+
+.green{
+	color: green;
+}
+
+.red{
+	color: red;
+}
+
+h1{
+	font-weight: bold;
+}
+
+hr{
+	border-color: silver;
+}
