@@ -9,7 +9,7 @@ class Register extends React.Component {
 	}
 	handleSubmit(e){
 		e.preventDefault();
-		var thisForm = this; 
+		var thisForm = this;
 		var data = new FormData(this.refs['form']);
 		$.ajax({
 			type: "POST",
@@ -19,7 +19,7 @@ class Register extends React.Component {
 			contentType: false
 		}).done(function(response){
 			if(response.status){
-				window.location.replace('/records');
+				window.location.replace('/dashboard');
 			}else{
 				thisForm.setState({errors: response.errors});
 			}
@@ -51,4 +51,3 @@ class Register extends React.Component {
 		)
 	}
 }
-

@@ -21,8 +21,6 @@ class RecordForm extends React.Component {
 	}
 	handleSubmit(e){
 		e.preventDefault();
-
-		
 		var thisForm = this;
 		$.ajax({
 			accepts: {
@@ -46,7 +44,7 @@ class RecordForm extends React.Component {
 				amount: null,
 				id: null
 			})
-		})
+		});
 	}
 	render(){
 		return(
