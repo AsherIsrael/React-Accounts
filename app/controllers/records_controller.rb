@@ -2,6 +2,7 @@ class RecordsController < ApplicationController
 	before_action :require_login
 	def index
 		@records = Record.where(user:current_user)
+		render json: @records
 	end
 	def create
 		@record = Record.new(record_params)

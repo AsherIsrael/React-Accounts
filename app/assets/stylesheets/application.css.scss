@@ -38,7 +38,7 @@
 .container-fluid{
 	background-color: #f1f3f3;
 	height: 100%;
-	
+
 }
 
 html, body{
@@ -55,8 +55,16 @@ html, body{
 
 h1{
 	font-weight: bold;
+   margin-top: 0;
+   margin-bottom: 0;
 }
 
 hr{
 	border-color: silver;
+   margin-top: 0;
+   margin-bottom: 0;
+}
+
+.dashImage{
+   cursor: pointer;
 }

@@ -1,7 +1,4 @@
 class UsersController < ApplicationController
-	def index
-
-	end
 	def create
 		@user = User.new(params.permit(:name, :username, :password, :password_confirmation))
 		if @user.save
@@ -12,9 +9,10 @@ class UsersController < ApplicationController
 			render json: {status: false, errors: @user.errors.full_messages}
 		end
 	end
-	def show
-	end
 	def new
+		if session[:user_id]
+			redirect_to '/dashboard'
+		end
 	end
 	def login
 		@user = User.where(username: "#{params[:username]}")[0]

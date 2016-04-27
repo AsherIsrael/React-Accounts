@@ -1,14 +1,10 @@
 class ImagePane extends React.Component {
-   handleRedirect(){
-      var redirect = "/"+this.props.image.name+"s";
-      window.location.replace(redirect);
-   }
    render () {
       return(
          <div className="col-md-3">
             <div className="row">
                <div className="col-md-3"></div>
-               <img className="col-md-6" alt={this.props.image.name} src={this.props.image.location} onClick={this.handleRedirect.bind(this)}/>
+               <img className="col-md-6 dashImage" alt={this.props.image.name} src={this.props.image.location} onClick={this.props.handleClick}/>
                <div className="col-md-3"></div>
             </div>
             <div className="row">
