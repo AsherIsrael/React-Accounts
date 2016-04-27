@@ -2,8 +2,7 @@ class DashboardController extends React.Component {
    constructor(){
       super();
       this.mainRender = this.mainRender.bind(this);
-      this.RecordsRender = this.RecordsRender.bind(this);
-      this.LocationsRender = this.LocationsRender.bind(this);
+      this.appRender = this.appRender.bind(this);
       this.changeView = this.changeView.bind(this);
       this.setState = this.setState.bind(this);
       this.state = {
@@ -44,31 +43,17 @@ class DashboardController extends React.Component {
 			</div>
       );
    }
-   RecordsRender(){
+   appRender(){
       var theDash = this;
       $.ajax({
          type: "GET",
          accepts: {
 				JSON: 'application/json'
 			},
-         url: "/records",
+         url: "/"+theDash.state.view.toLowerCase(),
          dataType: 'JSON'
       }).done(function(response){
-         console.log("records");
-         theDash.setState({data: response});
-      });
-   }
-   LocationsRender(){
-      var theDash = this;
-      $.ajax({
-         type: "GET",
-         accepts: {
-				JSON: 'application/json'
-			},
-         url: "/locations",
-         dataType: 'JSON'
-      }).done(function(response){
-         console.log("locations");
+         console.log("app data");
          theDash.setState({data: response});
       });
    }
@@ -77,12 +62,11 @@ class DashboardController extends React.Component {
          return this.mainRender();
       }else{
          if(!this.state.data){
-            this[this.state.view+'Render']();
+            this.appRender();
             return(
                <img alt="loading" src="/assets/loading.gif"/>
             );
          }else{
-            //return <Records data={this.state.data}/>;
             return(
                React.createElement(eval(this.state.view), {data: this.state.data})
             );
