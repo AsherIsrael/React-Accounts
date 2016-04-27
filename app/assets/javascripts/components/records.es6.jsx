@@ -128,5 +128,5 @@ Records.propTypes = {
 	records: React.PropTypes.array
 };
 Records.defaultProps = {
-	records: []
+	data: []
 };

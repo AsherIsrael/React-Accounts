@@ -1,7 +1,7 @@
 class LoginController extends React.Component {
 	render () {
 		return(
-			<div className="container">
+			<div className="container-fluid">
 				<br/><br/>
 				<pre>
 					<Register/>
@@ -12,4 +12,3 @@ class LoginController extends React.Component {
 		);
 	}
 }
-

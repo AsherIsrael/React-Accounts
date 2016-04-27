@@ -2,12 +2,13 @@ class DashboardController extends React.Component {
    constructor(){
       super();
       this.mainRender = this.mainRender.bind(this);
-      this.recordsRender = this.recordsRender.bind(this);
+      this.RecordsRender = this.RecordsRender.bind(this);
+      this.LocationsRender = this.LocationsRender.bind(this);
       this.changeView = this.changeView.bind(this);
       this.setState = this.setState.bind(this);
       this.state = {
          view: "default",
-         records: undefined
+         data: undefined
       }
    }
    changeView(e){
@@ -43,7 +44,7 @@ class DashboardController extends React.Component {
 			</div>
       );
    }
-   recordsRender(){
+   RecordsRender(){
       var theDash = this;
       $.ajax({
          type: "GET",
@@ -54,21 +55,37 @@ class DashboardController extends React.Component {
          dataType: 'JSON'
       }).done(function(response){
          console.log("records");
-         theDash.setState({records: response});
+         theDash.setState({data: response});
+      });
+   }
+   LocationsRender(){
+      var theDash = this;
+      $.ajax({
+         type: "GET",
+         accepts: {
+				JSON: 'application/json'
+			},
+         url: "/locations",
+         dataType: 'JSON'
+      }).done(function(response){
+         console.log("locations");
+         theDash.setState({data: response});
       });
    }
    render(){
       if(this.state.view == "default"){
          return this.mainRender();
-      }
-      if(this.state.view == "records"){
-         if(!this.state.records){
-            this.recordsRender();
+      }else{
+         if(!this.state.data){
+            this[this.state.view+'Render']();
             return(
                <img alt="loading" src="/assets/loading.gif"/>
             );
          }else{
-            return <Records data={this.state.records}/>;
+            //return <Records data={this.state.data}/>;
+            return(
+               React.createElement(eval(this.state.view), {data: this.state.data})
+            );
          }
       }
    }
