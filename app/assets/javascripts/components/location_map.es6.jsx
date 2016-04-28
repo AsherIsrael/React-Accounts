@@ -31,6 +31,7 @@ class LocationMap extends React.Component {
       });
       map.mapTypes.set(customMapTypeId, customMapType);
       map.setMapTypeId(customMapTypeId);
+      console.log(this);
       this.setState({map: map});
 
    }
