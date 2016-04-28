@@ -2,12 +2,16 @@ class LocationMap extends React.Component {
    constructor(props){
       super(props);
       this.setState = this.setState.bind(this);
+      this.makeMap = this.makeMap.bind(this);
       this.state = {
          locations: props.locations,
          map: undefined
       };
    }
    componentDidMount(){
+      this.makeMap();
+   }
+   makeMap(){
       var customMapType = new google.maps.StyledMapType([
          {
             stylers: [
@@ -28,6 +32,7 @@ class LocationMap extends React.Component {
       map.mapTypes.set(customMapTypeId, customMapType);
       map.setMapTypeId(customMapTypeId);
       this.setState({map: map});
+
    }
    render(){
       return(
