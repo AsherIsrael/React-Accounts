@@ -1,6 +1,7 @@
 class LocationMap extends React.Component {
    constructor(props){
       super(props);
+      this.setState = this.setState.bind(this);
       this.state = {
          locations: props.locations,
          map: undefined
@@ -26,7 +27,7 @@ class LocationMap extends React.Component {
       });
       map.mapTypes.set(customMapTypeId, customMapType);
       map.setMapTypeId(customMapTypeId);
-      this.setState({map: map}).bind(this);
+      this.setState({map: map});
    }
    render(){
       return(
