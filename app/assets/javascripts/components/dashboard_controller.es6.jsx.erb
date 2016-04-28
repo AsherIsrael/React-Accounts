@@ -58,13 +58,14 @@ class DashboardController extends React.Component {
       });
    }
    render(){
+      var loading = "<%= asset_path('loading.gif') %>";
       if(this.state.view == "default"){
          return this.mainRender();
       }else{
          if(!this.state.data){
             this.appRender();
             return(
-               <img alt="loading" src="/assets/loading.gif"/>
+               <img alt="loading" src={loading}/>
             );
          }else{
             return(
