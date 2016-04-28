@@ -15,4 +15,3 @@ class AmountBox extends React.Component {
 		);
 	}
 }
-

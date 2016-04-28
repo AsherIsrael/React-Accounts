@@ -2,7 +2,7 @@ class Login extends React.Component {
 	constructor(){
 		super();
 		this.handleSubmit = this.handleSubmit.bind(this);
-		this.setState - this.setState.bind(this);
+		this.setState = this.setState.bind(this);
 		this.state = {
 			errors: []
 		};

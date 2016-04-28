@@ -78,7 +78,7 @@ class Record extends React.Component {
 				<td className="col-md-3"><input type="date" className="form-control" placeholder="Date" ref="date" defaultValue={this.props.record.date}/></td>
 				<td className="col-md-2"><input type="text" className="form-control" placeholder="Title" ref="title" defaultValue={this.props.record.title}/></td>
 				<td className="col-md-2"><input type="number" step="0.01" className="form-control" placeholder="Amount" ref="amount" defaultValue={this.props.record.amount}/></td>
-				<td className="col-md-3 text-center"><span className="col-md-3"></span><a className="col-md-3 btn btn-default" onClick={this.handleEdit}>Update</a><span className="col-md-1"></span><a className="col-md-3 btn btn-danger" onClick={this.handleToggle}>Cancel</a></td>
+				<td className="col-md-3 text-center"><span className="col-md-3"></span><a className="col-md-3 btn btn-default" onClick={this.handleEdit}>Update</a><span className="col-md-1"></span><a className="col-md-3 btn btn-warning" onClick={this.handleToggle}>Cancel</a></td>
 			</tr>
 		);
 	}

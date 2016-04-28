@@ -21,11 +21,14 @@ class Locations extends React.Component {
                         <Logout/>
                      </div>
                   </div>
-                  <div className="row">
-                     <div className="col-md-12">
-                        <LocationMap locations={this.state.locations}/>
+                  <br/>
+                  <pre>
+                     <div className="row">
+                        <div className="col-md-12">
+                           <LocationMap locations={this.state.locations}/>
+                        </div>
                      </div>
-                  </div>
+                  </pre>
                </div>
                <div className="col-md-1"></div>
             </div>
