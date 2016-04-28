@@ -1,1 +1,1 @@
-<%= react_component( 'DashboardController', { images: [{name: "Records", imgLocation: "/assets/records.png"}, {name: "Locations",imgLocation: "/assets/locations.png"}]}, {:style => "height:100%"})%>
+<%= react_component( 'DashboardController', { images: [{name: "Records", imgLocation: <%= asset_path('records.png') %>}, {name: "Locations",imgLocation: <%= asset_path('locations.png') %>}]}, {:style => "height:100%"})%>
