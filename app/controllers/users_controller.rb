@@ -21,7 +21,7 @@ class UsersController < ApplicationController
 			session[:user_id] = @user.id
 			render json: {status: true}
 		else
-			render json: {status: false, errors: @user.errors}
+			render json: {status: false, errors: ["Incorrect Username or Password"]}
 		end
 	end
 	def logout
