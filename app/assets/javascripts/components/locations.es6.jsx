@@ -11,8 +11,7 @@ class Locations extends React.Component {
       };
    }
    setCoords(e){
-      console.log("set coords");
-      this.setState({xCoord: e.latLng.lng(), yCoord: e.latLng.lat()});
+      this.setState({xCoord: e.latLng.lng(), yCoord: e.latLng.lat()})
    }
    addLocation(location){
       var locations = this.state.locations.slice();

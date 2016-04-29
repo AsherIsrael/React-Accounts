@@ -12,6 +12,10 @@ class LocationMap extends React.Component {
    componentDidMount(){
       this.makeMap();
    }
+   componentWillReceiveProps(nextProps){
+      this.setState({locations: nextProps.locations});
+      this.makeMarkers(this.state.map, nextProps.locations);
+   }
    makeMap(){
       var thisMap = this;
       var customMapType = new google.maps.StyledMapType([
@@ -40,12 +44,12 @@ class LocationMap extends React.Component {
       google.maps.event.addListener(map, "click", function(e){
          thisMap.props.handleClick(e);
       });
-      this.makeMarkers(map);
+      this.makeMarkers(map, thisMap.state.locations);
    }
-   makeMarkers(map){
-      for(location in this.state.locations){
+   makeMarkers(map, locats){
+      for(locat in locats){
          var icon = null;
-         switch(designation){
+         switch(locats[locat].designation){
             case "home":
                icon = "/assets/home-05b8b4350a85726cff5be5dbcafb97609b383882cef1a3f5af2a8be7cb63c973.png"
                break;
@@ -72,7 +76,7 @@ class LocationMap extends React.Component {
                break;
          }
          var marker = new google.maps.Marker({
-            position: {lat: location.yCoord, lng: location.xCoord},
+            position: {lat: parseFloat(locats[locat].yCoord), lng: parseFloat(locats[locat].xCoord)},
             map: map,
             icon: icon
          })
