@@ -10,7 +10,6 @@ class LocationMap extends React.Component {
       };
    }
    componentDidMount(){
-      console.log("mounted");
       this.makeMap();
    }
    componentWillReceiveProps(nextProps){
@@ -18,7 +17,6 @@ class LocationMap extends React.Component {
       this.makeMarkers(this.state.map, nextProps.locations);
    }
    makeMap(){
-      console.log("make map");
       var thisMap = this;
       var customMapType = new google.maps.StyledMapType([
          {
@@ -49,7 +47,6 @@ class LocationMap extends React.Component {
       this.makeMarkers(map, thisMap.state.locations);
    }
    makeMarkers(map, locats){
-      console.log("make marks");
       for(locat in locats){
          var icon = null;
          switch(locats[locat].designation){
