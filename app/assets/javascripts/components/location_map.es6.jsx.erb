@@ -14,7 +14,7 @@ class LocationMap extends React.Component {
    }
    componentWillReceiveProps(nextProps){
       this.setState({locations: nextProps.locations});
-      this.makeMarkers(this.state.map, this.state.locations);
+      this.makeMarkers(this.state.map, nextProps.locations);
    }
    makeMap(){
       var thisMap = this;
