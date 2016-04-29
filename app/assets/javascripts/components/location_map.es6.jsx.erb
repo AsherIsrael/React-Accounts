@@ -18,34 +18,34 @@ class LocationMap extends React.Component {
       this.makeMarkers(this.state.map, nextProps.locations);
    }
    makeMap(){
-      var thisMap = this;
-      var customMapType = new google.maps.StyledMapType([
-         {
-            featureType: 'poi',
-            elementType: 'labels',
-            stylers:[
-               {visibility: 'off'}
-            ]
-         }
-      ],{
-            name: 'Custom Style'
-      });
-      var customMapTypeId = 'custom_style';
-      var map = new google.maps.Map(document.getElementById('map'), {
-         center: {lat: 48, lng: -122},
-         zoom: 8,
-         draggableCursor: 'default',
-         mapTypeControlOptions: {
-            mapTypeIds: [google.maps.MapTypeId.ROADMAP, customMapTypeId]
-          }
-      });
-      map.mapTypes.set(customMapTypeId, customMapType);
-      map.setMapTypeId(customMapTypeId);
-      thisMap.setState({map: map});
-      google.maps.event.addListener(map, "click", function(e){
-         thisMap.props.handleClick(e);
-      });
-      thisMap.makeMarkers(map, thisMap.state.locations);
+   	var thisMap = this;
+   	var customMapType = new google.maps.StyledMapType([
+   		{
+   			featureType: 'poi',
+   			elementType: 'labels',
+   			stylers:[
+   				{visibility: 'off'}
+   			]
+   		}
+   	],{
+   			name: 'Custom Style'
+   		});
+   	var customMapTypeId = 'custom_style';
+   	var map = new google.maps.Map(document.getElementById('map'), {
+   		center: {lat: 48, lng: -122},
+   		zoom: 8,
+   		draggableCursor: 'default',
+   		mapTypeControlOptions: {
+   			mapTypeIds: [google.maps.MapTypeId.ROADMAP, customMapTypeId]
+   		 }
+   	});
+   	map.mapTypes.set(customMapTypeId, customMapType);
+   	map.setMapTypeId(customMapTypeId);
+   	thisMap.setState({map: map});
+   	google.maps.event.addListener(map, "click", function(e){
+   		thisMap.props.handleClick(e);
+   	});
+   	this.makeMarkers(map, thisMap.state.locations);
    }
    makeMarkers(map, locats){
       console.log("make marks");
