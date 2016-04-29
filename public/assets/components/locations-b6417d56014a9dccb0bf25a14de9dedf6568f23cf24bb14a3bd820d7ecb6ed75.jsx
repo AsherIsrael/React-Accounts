@@ -16,7 +16,7 @@ class Locations extends React.Component {
    addLocation(location){
       var locations = this.state.locations.slice();
       locations.push(location);
-      this.setState({locations: locations});
+      this.setState(this.state.locations = locations);
    }
    render () {
       return(
