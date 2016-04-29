@@ -12,34 +12,37 @@ class LocationMap extends React.Component {
       this.makeMap();
    }
    makeMap(){
+      var thisMap = this;
       var customMapType = new google.maps.StyledMapType([
          {
-            stylers: [
+            featureType: 'poi',
+            elementType: 'labels',
+            stylers:[
+               {visibility: 'off'}
             ]
-         },
-         {
-            name: 'custom style'
          }
-      ]);
+      ],{
+            name: 'Custom Style'
+         });
       var customMapTypeId = 'custom_style';
       var map = new google.maps.Map(document.getElementById('map'), {
          center: {lat: 48, lng: -122},
          zoom: 8,
+         draggableCursor: 'default',
          mapTypeControlOptions: {
-            mapTypeIds: [customMapTypeId]
-         }
+            mapTypeIds: [google.maps.MapTypeId.ROADMAP, customMapTypeId]
+          }
       });
       map.mapTypes.set(customMapTypeId, customMapType);
       map.setMapTypeId(customMapTypeId);
-      console.log(this);
-      this.setState({map: map});
-
+      thisMap.setState({map: map});
+      google.maps.event.addListener(map, "click", function(e){
+         thisMap.props.handleClick(e);
+      });
    }
    render(){
       return(
-         <div>
-            <div id="map"></div>
-         </div>
+         <div id="map"></div>
       );
    }
 }

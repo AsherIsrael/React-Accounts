@@ -1,9 +1,16 @@
 class Locations extends React.Component {
    constructor(props){
       super(props);
+      this.setCoords = this.setCoords.bind(this);
+      this.setState = this.setState.bind(this);
       this.state = {
-         locations: props.data
+         locations: props.data,
+         xCoord: null,
+         yCoord: null
       };
+   }
+   setCoords(e){
+      this.setState({xCoord: e.latLng.lng(), yCoord: e.latLng.lat()})
    }
    render () {
       return(
@@ -24,8 +31,11 @@ class Locations extends React.Component {
                   <br/>
                   <pre>
                      <div className="row">
-                        <div className="col-md-12">
-                           <LocationMap locations={this.state.locations}/>
+                        <div className="col-md-8">
+                           <LocationMap locations={this.state.locations} handleClick={this.setCoords}/>
+                        </div>
+                        <div className="col-md-4">
+                           <LocationForm xCoord={this.state.xCoord} yCoord={this.state.yCoord}/>
                         </div>
                      </div>
                   </pre>
