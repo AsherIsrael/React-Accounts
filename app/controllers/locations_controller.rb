@@ -7,8 +7,6 @@ class LocationsController < ApplicationController
    def google
       render "google6abbbb5ad4aea7d4.html", layout: false
    end
-<<<<<<< HEAD
-=======
    def create
       @location = Location.new(location_params)
       if @location.save
@@ -29,5 +27,4 @@ class LocationsController < ApplicationController
       def location_params
          params.permit(:xCoord, :yCoord, :name, :designation)
       end
->>>>>>> locationApp
 end
