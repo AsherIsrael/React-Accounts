@@ -7,7 +7,7 @@ class DashboardController extends React.Component {
       this.setState = this.setState.bind(this);
       this.state = {
          view: "default",
-         data: undefined
+         data: null
       }
    }
    changeView(e){
@@ -44,6 +44,7 @@ class DashboardController extends React.Component {
       );
    }
    appRender(){
+      console.log("appRender");
       var theDash = this;
       $.ajax({
          type: "GET",

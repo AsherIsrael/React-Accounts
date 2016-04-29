@@ -16,7 +16,7 @@ class Locations extends React.Component {
    addLocation(location){
       var locations = this.state.locations.slice();
       locations.push(location);
-      this.setState({locations: locations});
+      this.setState(this.state.locations = locations);
    }
    render () {
       return(
@@ -37,16 +37,11 @@ class Locations extends React.Component {
                   <br/>
                   <pre>
                      <div className="row">
-<<<<<<< HEAD
-                        <div className="col-md-12">
-                           <LocationMap locations={this.state.locations}/>
-=======
                         <div className="col-md-8">
                            <LocationMap locations={this.state.locations} handleClick={this.setCoords}/>
                         </div>
                         <div className="col-md-4">
                            <LocationForm handleNewLocation={this.addLocation} xCoord={this.state.xCoord} yCoord={this.state.yCoord}/>
->>>>>>> locationApp
                         </div>
                      </div>
                   </pre>

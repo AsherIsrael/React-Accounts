@@ -46,13 +46,12 @@ class LocationForm extends React.Component {
             yCoord: null,
             xCoord: null,
             name: null,
-            designation: "",
+            designation: null,
             id: null
-         });
-         thisForm.refs.select.selectedIndex = 0;
+         })
       });
    }
-   render(){
+   render () {
       return(
          <form onSubmit={this.handleSubmit}>
             <div className="input-group">
@@ -67,11 +66,11 @@ class LocationForm extends React.Component {
             <br/>
             <div className="input-group">
                <span className="input-group-addon">Name</span>
-               <input name="name" value={this.state.name} type="text" className="form-control" onChange={this.handleChange}/>
+               <input name="name" type="text" className="form-control" onChange={this.handleChange}/>
             </div>
             <br/>
             <div className="input-group">
-               <select ref="select" name="designation" className="btn btn-warning dropdown-toggle" onChange={this.handleChange}>
+               <select name="designation" className="btn btn-warning dropdown-toggle" onChange={this.handleChange}>
                   <option value="">What kind of location is this?</option>
                   <option value="home">Home</option>
                   <option value="restaurant">Restaurant</option>
